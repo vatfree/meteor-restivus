@@ -5,10 +5,9 @@ Package.describe({
   git: 'https://github.com/kahmali/meteor-restivus.git'
 });
 
-
 Package.onUse(function (api) {
   // Minimum Meteor version
-  api.versionsFrom('METEOR@0.9.0');
+  api.versionsFrom('METEOR@1.6.1');
 
   // Meteor dependencies
   api.use('check');
@@ -17,10 +16,10 @@ Package.onUse(function (api) {
   api.use('accounts-password@1.3.3');
   api.use('simple:json-routes@2.1.0');
 
-  api.addFiles('lib/auth.coffee', 'server');
+  api.addFiles('lib/auth.js', 'server');
   api.addFiles('lib/iron-router-error-to-response.js', 'server');
-  api.addFiles('lib/route.coffee', 'server');
-  api.addFiles('lib/restivus.coffee', 'server');
+  api.addFiles('lib/route.js', 'server');
+  api.addFiles('lib/restivus.js', 'server');
 
   // Exports
   api.export('Restivus', 'server');
@@ -39,9 +38,6 @@ Package.onTest(function (api) {
   api.use('accounts-password');
   api.use('mongo');
 
-  api.addFiles('lib/route.coffee', 'server');
-  api.addFiles('test/api_tests.coffee', 'server');
-  api.addFiles('test/route_unit_tests.coffee', 'server');
-  api.addFiles('test/authentication_tests.coffee', 'server');
-  api.addFiles('test/user_hook_tests.coffee', 'server');
+  api.addFiles('lib/route.js', 'server');
+
 });
