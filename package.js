@@ -2,10 +2,10 @@ Package.describe({
   name: 'nimble:restivus',
   summary: 'Create authenticated REST APIs in Meteor 0.9+ via HTTP/HTTPS. Setup CRUD endpoints for Collections.',
   version: '0.8.12',
-  git: 'https://github.com/kahmali/meteor-restivus.git'
+  git: 'https://github.com/kahmali/meteor-restivus.git',
 });
 
-Package.onUse(function (api) {
+Package.onUse(function(api) {
   // Minimum Meteor version
   api.versionsFrom('METEOR@1.6.1');
 
@@ -16,7 +16,6 @@ Package.onUse(function (api) {
   api.use('accounts-password@1.3.3');
   api.use('simple:json-routes@2.1.0');
 
-  api.addFiles('lib/auth.js', 'server');
   api.addFiles('lib/iron-router-error-to-response.js', 'server');
   api.addFiles('lib/route.js', 'server');
   api.addFiles('lib/restivus.js', 'server');
@@ -25,8 +24,7 @@ Package.onUse(function (api) {
   api.export('Restivus', 'server');
 });
 
-
-Package.onTest(function (api) {
+Package.onTest(function(api) {
   // Meteor dependencies
   api.use('practicalmeteor:munit');
   api.use('test-helpers');
@@ -39,5 +37,4 @@ Package.onTest(function (api) {
   api.use('mongo');
 
   api.addFiles('lib/route.js', 'server');
-
 });
