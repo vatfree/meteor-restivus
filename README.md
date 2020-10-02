@@ -104,19 +104,6 @@ if Meteor.isServer
         authRequired: false
       delete:
         roleRequired: 'admin'
-
-  # Maps to: /api/articles/:id
-  Api.addRoute 'articles/:id', authRequired: true,
-    get: ->
-      Articles.findOne @urlParams.id
-    delete:
-      roleRequired: ['author', 'admin']
-      action: ->
-        if Articles.remove @urlParams.id
-          status: 'success', data: message: 'Article removed'
-        else
-          statusCode: 404
-          body: status: 'fail', message: 'Article not found'
 ```
 
 ###### JavaScript:
@@ -156,12 +143,12 @@ if (Meteor.isServer) {
   // Maps to: /api/articles/:id
   Api.addRoute('articles/:id', {authRequired: true}, {
     get: function () {
-      return Articles.findOne(this.urlParams.id);
+      return Articles.findOne(this.request.params.id);
     },
     delete: {
       roleRequired: ['author', 'admin'],
       action: function () {
-        if (Articles.remove(this.urlParams.id)) {
+        if (Articles.remove(this.request.params.id)) {
           return {status: 'success', data: {message: 'Article removed'}};
         }
         return {
@@ -761,40 +748,40 @@ Paths can have variable parameters. For example, you can create a route to show 
 specific id. The `id` is variable depending on the post you want to see such as "/articles/1" or
 "/articles/2". To declare a named parameter in the path, use the `:` syntax followed by the parameter
 name. When a user goes to that URL, the actual value of the parameter will be stored as a property
-on `this.urlParams` in your endpoint function.
+on `this.request.params` in your endpoint function.
 
 In this example we have a parameter named `_id`. If we navigate to the `/post/5` URL in our browser,
 inside of the GET endpoint function we can get the actual value of the `_id` from
-`this.urlParams._id`. In this case `this.urlParams._id => 5`.
+`this.request.params._id`. In this case `this.request.params._id => 5`.
 
 ###### CoffeeScript:
 ```coffeescript
 # Given a URL like "/post/5"
 Api.addRoute '/post/:_id',
   get: ->
-    id = @urlParams._id # "5"
+    id = @request.params._id # "5"
 ```
 ###### JavaScript:
 ```javascript
 // Given a URL "/post/5"
 Api.addRoute('/post/:_id', {
   get: function () {
-    var id = this.urlParams._id; // "5"
+    var id = this.request.params._id; // "5"
   }
 });
 ```
 
 You can have multiple URL parameters. In this example, we have an `_id` parameter and a `commentId`
 parameter. If you navigate to the URL `/post/5/comments/100` then inside your endpoint function
-`this.urlParams._id => 5` and `this.urlParams.commentId => 100`.
+`this.request.params._id => 5` and `this.request.params.commentId => 100`.
 
 ###### CoffeeScript:
 ```coffeescript
 # Given a URL "/post/5/comments/100"
 Api.addRoute '/post/:_id/comments/:commentId',
   get: ->
-    id = @urlParams._id # "5"
-    commentId = @urlParams.commentId # "100"
+    id = @request.params._id # "5"
+    commentId = @request.params.commentId # "100"
 ```
 
 ###### JavaScript:
@@ -802,30 +789,8 @@ Api.addRoute '/post/:_id/comments/:commentId',
 // Given a URL "/post/5/comments/100"
 Api.addRoute('/post/:_id/comments/:commentId', {
   get: function () {
-    var id = this.urlParams._id; // "5"
-    var commentId = this.urlParams.commentId; // "100"
-  }
-});
-```
-
-If there is a query string in the URL, you can access that using `this.queryParams`.
-
-###### Coffeescript:
-```coffeescript
-# Given the URL: "/post/5?q=liked#hash_fragment"
-Api.addRoute '/post/:_id',
-  get: ->
-    id = @urlParams._id
-    query = @queryParams # query.q -> "liked"
-```
-
-###### JavaScript:
-```javascript
-// Given the URL: "/post/5?q=liked#hash_fragment"
-Api.addRoute('/post/:_id', {
-  get: function () {
-    var id = this.urlParams._id;
-    var query = this.queryParams; // query.q -> "liked"
+    var id = this.request.params._id; // "5"
+    var commentId = this.request.params.commentId; // "100"
   }
 });
 ```
@@ -958,21 +923,6 @@ Each endpoint has access to:
 - _String_
 - The authenticated user's `Meteor.userId`. Only available if `authRequired` is `true` and a user is
   successfully authenticated. If not, it will be `undefined`.
-
-##### `this.urlParams`
-- _Object_
-- Non-optional parameters extracted from the URL. A parameter `id` on the path `articles/:id` would be
-  available as `this.urlParams.id`.
-
-##### `this.queryParams`
-- _Object_
-- Optional query parameters from the URL. Given the URL `https://yoursite.com/articles?likes=true`,
-  `this.queryParams.likes => true`.
-
-##### `this.bodyParams`
-- _Object_
-- Parameters passed in the request body. Given the request body `{ "friend": { "name": "Jack" } }`,
-  `this.bodyParams.friend.name => "Jack"`.
 
 ##### `this.request`
 - [_Node request object_][node-request]

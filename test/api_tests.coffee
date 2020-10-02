@@ -198,17 +198,6 @@ Meteor.startup ->
       test.equal result.headers['access-control-allow-origin'], 'https://mywebsite.com'
       test.isTrue result.content
 
-    it 'should have access to multiple query params', (test, waitFor) ->
-      Api.addRoute 'mult-query-params',
-        get: ->
-          test.equal @queryParams.key1, '1234'
-          test.equal @queryParams.key2, 'abcd'
-          test.equal @queryParams.key3, 'a1b2'
-          true
-
-      HTTP.get Meteor.absoluteUrl('api/mult-query-params?key1=1234&key2=abcd&key3=a1b2'), waitFor (error, result) ->
-        test.isTrue result
-
     it 'should return a 405 error if that method is not implemented on the route', (test, waitFor) ->
       Api.addCollection new Mongo.Collection('method-not-implemented'),
         excludedEndpoints: ['get', 'getAll']
@@ -310,9 +299,6 @@ Meteor.startup ->
     it 'should have its context set', (test) ->
       Api.addRoute 'context/:test',
         post: ->
-          test.equal @urlParams.test, '100'
-          test.equal @queryParams.test, 'query'
-          test.equal @bodyParams.test, 'body'
           test.isNotNull @request
           test.isNotNull @response
           test.isTrue _.isFunction @done
