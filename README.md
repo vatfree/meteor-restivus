@@ -240,6 +240,24 @@ The following configuration options are available when initializing an API using
   the `/logout` endpoint. [Context](#endpoint-context) is the same as within authenticated
   endpoints. Any returned data will be added to the response body as `data.extra`.
 
+##### `onAuth`
+- _Function_
+- Default: `undefined`
+- Function called right after authorization has been checked and before the route `action()` is called. This
+  can be used to add extra checks to the authorization. The new 
+
+##### `onAction`
+- _Function_
+- Default: `undefined`
+- Function called right before the `action()` on the route is called. This allows to capture all calls to the api
+  and potentially manipulate the endpoint context that is passed to the route.
+
+##### `onReturn`
+- _Function_
+- Default: `undefined`
+- Function called right before the result is returned to the client. This allows to capture the return value
+  and potentially manipulate before sending.
+
 ##### `prettyJson`
 - _Boolean_
 - Default: `false`
@@ -295,6 +313,16 @@ Here's a sample configuration with the complete set of options:
     },
     onLoggedOut: function () {
       console.log(this.user.username + ' (' + this.userId + ') logged out');
+    },
+    onAuth: function(auth) {
+        // do some extra checks on the `auth.user` object
+        return auth;    
+    },
+    onAction: function() {
+        this.extraData = 'some extra data';    
+    },
+    onReturn: function(returnValue) {
+        return returnValue;    
     },
     prettyJson: true,
     useDefaultAuth: true,
