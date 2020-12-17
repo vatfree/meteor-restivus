@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.1.0] - 2020-12-17
+
+#### Added
+onAuth, onAction, onReturn functions to global options.
+
 ## [v1.0.0] - 2020-12-10
 
 #### Changed
@@ -382,6 +387,7 @@ _Note: API-breaking changes are in **bold**_
 - Initial release
 
 
+[v1.1.0]:  https://github.com/vatfree/meteor-restivus/compare/v1.0.0...v1.1.0  "Version 1.1.0"
 [v1.0.0]:  https://github.com/vatfree/meteor-restivus/compare/v0.8.12...v1.0.0  "Version 1.0.0"
 [v0.8.12]:  https://github.com/kahmali/meteor-restivus/compare/v0.8.11...v0.8.12  "Version 0.8.12"
 [v0.8.11]:  https://github.com/kahmali/meteor-restivus/compare/v0.8.10...v0.8.11  "Version 0.8.11"
