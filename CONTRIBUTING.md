@@ -14,10 +14,10 @@ The following contributions to Restivus are greatly appreciated:
 - Bug reports (via GitHub Issues)
 - Feature requests and voting (via GitHub Issues)
 
-[GitHub Issues](https://github.com/kahmali/meteor-restivus/issues) are used for all bug and feature 
-tracking. [Milestones](https://github.com/kahmali/meteor-restivus/milestones) will be created for 
+[GitHub Issues](https://github.com/vatfree/meteor-restivus/issues) are used for all bug and feature 
+tracking. [Milestones](https://github.com/vatfree/meteor-restivus/milestones) will be created for 
 each release version (e.g., `v1.0.0`), and any associated Issues or [Pull Requests]
-(https://github.com/kahmali/meteor-restivus/pulls?q=is%3Aopen+is%3Apr) will be added to the 
+(https://github.com/vatfree/meteor-restivus/pulls?q=is%3Aopen+is%3Apr) will be added to the 
 corresponding milestone. 
 
 
@@ -51,8 +51,8 @@ must adhere to when contributing to this project:
    1. Add automated tests to the `/tests` directory for any new features 
    1. Ensure all automated tests are passing by running `meteor test-packages ./` from the root
       directory of the project and viewing the Tinytest output at `http://localhost:3000`
-   1. Update the [README](https://github.com/kahmali/meteor-restivus/blob/devel/README.md) and 
-      [change log](https://github.com/kahmali/meteor-restivus/blob/devel/CHANGELOG.md) with any 
+   1. Update the [README](https://github.com/vatfree/meteor-restivus/blob/devel/README.md) and 
+      [change log](https://github.com/vatfree/meteor-restivus/blob/devel/CHANGELOG.md) with any 
       corresponding changes
      - Please follow the existing conventions within each document until detailed conventions can 
        be formalized for each
@@ -88,11 +88,11 @@ For a detailed explanation, please see [How to Write a Git Commit Message]
 ## Bug Reports
 
 Please file all bug reports, no matter how big or small, as [GitHub Issues]
-(https://github.com/kahmali/meteor-restivus/issues). Please provide details, and, if possible,
+(https://github.com/vatfree/meteor-restivus/issues). Please provide details, and, if possible,
 include steps to reproduce the bug, a sample GitHub repo with the bug reproduced, or sample code.
 
 
 ## Feature Requests
 
 Restivus is still a work in progress. Feature requests are welcome, and can be created and voted on
-using [GitHub Issues](https://github.com/kahmali/meteor-restivus/issues)!
+using [GitHub Issues](https://github.com/vatfree/meteor-restivus/issues)!
