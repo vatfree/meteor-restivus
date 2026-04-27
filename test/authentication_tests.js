@@ -50,7 +50,7 @@ describe('Authentication', function () {
         let email = 'test@ivus.com';
         let password = 'password';
 
-        Meteor.users.remove({
+        Meteor.users.removeAsync({
             username: username
         });
 

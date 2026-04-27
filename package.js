@@ -6,15 +6,15 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom(['2.7']);
+  api.versionsFrom(['2.7', '3.0']);
 
   // Meteor dependencies
   api.use('ecmascript');
   api.use('check');
   api.use('underscore');
   api.use('accounts-password');
-  api.use('simple:json-routes@2.1.0');
-  api.use('alanning:roles@1.3.0', 'server', {weak: true});
+  api.use('simple:json-routes'); // Now using local package
+  api.use('alanning:roles', 'server', {weak: true}); // Removed version constraint for Meteor 3
 
   api.addFiles([
     'lib/auth.js',

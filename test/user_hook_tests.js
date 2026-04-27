@@ -26,7 +26,7 @@ describe('User login and logout', function () {
     let username = 'test2';
     let email = 'test2@ivus.com';
     let password = 'password';
-    Meteor.users.remove({
+    Meteor.users.removeAsync({
         username: username
     });
     let userId = Accounts.createUser({
